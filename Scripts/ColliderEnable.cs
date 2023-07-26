@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class ColliderEnable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    Collider2D coll;
+    public Collider2D coll;
+    public GameObject puzzle;
     bool isSolved = false;
     private void Start()
     {
-        coll = this.GetComponent<Collider2D>();
+        // coll = this.GetComponent<Collider2D>();
         coll.enabled = false;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         isSolved = SolvedPuzzle.isSolvedValue;
@@ -24,6 +23,14 @@ public class ColliderEnable : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             SolvedPuzzle.isSolved();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        //verifica se o puzzle já está na tela, caso não, exibe
+        if(!puzzle.gameObject.activeSelf) 
+        {
+            puzzle.gameObject.SetActive(true);
         }
     }
 }

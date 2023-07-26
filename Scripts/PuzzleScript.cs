@@ -16,8 +16,9 @@ public class PuzzleScript : MonoBehaviour
 
     }
 
-    public void rightAnswer()
+    public void rightAnswer(GameObject puzzle)
     {
         SolvedPuzzle.isSolved();
+        puzzle.gameObject.SetActive(false);
     }
 }
