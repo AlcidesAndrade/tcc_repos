@@ -28,8 +28,9 @@ public class ColliderEnable : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         //verifica se o puzzle já está na tela, caso não, exibe
-        if(!puzzle.gameObject.activeSelf) 
+        if(!puzzle.gameObject.activeSelf && !SolvedPuzzle.isBankPuzzleAnswered) 
         {
+            Debug.Log("Ativando");
             puzzle.gameObject.SetActive(true);
         }
     }

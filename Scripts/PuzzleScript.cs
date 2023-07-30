@@ -1,24 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject puzzleBanco;
+    public GameObject confirmAnswerPanelBanco; 
+    public Text answerBanco;
+    private void confirmAnswer(string confirmText)
     {
-
+        confirmAnswerPanelBanco.SetActive(true);
+        answerBanco.text = $"Sua resposta escolhida foi {confirmText}. Você tem certeza da resposta?";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void rightAnswer(GameObject puzzle)
+    public void rightAnswer(string confirmText)
     {
         SolvedPuzzle.isSolved();
-        puzzle.gameObject.SetActive(false);
+        confirmAnswer(confirmText);
+        puzzleBanco.gameObject.SetActive(false);
     }
+
+    public void wrongAnswer(string confirmText)
+    {
+        SolvedPuzzle.isntSolved();
+        confirmAnswer(confirmText);
+        puzzleBanco.gameObject.SetActive(false);
+    }
+
 }
